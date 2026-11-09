@@ -19,28 +19,10 @@ cd trainee-hot-honey-26t3
 
 ### Database
 
-The database (Postgres) runs in Docker. Make sure Docker Desktop is open, then
-from the project root, create your env file:
-```bash
-cp backend/.env.example backend/.env
-```
-The defaults work for local dev, so you don't need to edit it.
-
 Start the database (`-d` runs it in the background, so you don't need a
 separate terminal for it). The first time takes a minute to download Postgres:
 ```bash
 docker compose up -d
-```
-
-Check it's ready. Wait until you see `database system is ready to accept connections`:
-```bash
-docker compose logs db
-```
-
-Create the tables (use the user and database name from `backend/.env` if you
-changed them):
-```bash
-docker compose exec -T db psql -U honey -d honey < backend/db/schema.sql
 ```
 
 ### Backend
@@ -98,7 +80,6 @@ cd frontend && pnpm dev
 | :--- | :--- |
 | `docker compose up -d` | Start the database |
 | `docker compose stop` | Stop the database (keeps your data) |
-| `docker compose exec db psql -U honey -d honey` | Open a SQL prompt (`\dt` lists tables, `\q` quits) |
 | `docker compose down -v` | **Delete** the database and all its data, for a fresh start |
 
 ## Troubleshooting
