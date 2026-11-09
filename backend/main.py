@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from database import try_conn
+
 app = FastAPI()
 app.add_middleware(
   CORSMiddleware,
@@ -11,4 +13,5 @@ app.add_middleware(
 
 @app.get("/")
 def root():
-  return {"message": "Hello we are Team Hot Honey!"}
+    # tests if backend can be reached, and also can connect to the db
+    return {"message": f"Hello we are Team Hot Honey! {try_conn()}"}
